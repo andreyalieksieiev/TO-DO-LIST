@@ -1,9 +1,10 @@
 import React from 'react';
 
-import './index.css';
+import { Input_input } from './styled';
+// import './index.css';
 
 const Input = ({ changed, value }) => (
-   <input onChange={changed} value={value} className="input"></input>
+   <Input_input onChange={changed} value={value} className="input"></Input_input>
 )
 
 export default Input;

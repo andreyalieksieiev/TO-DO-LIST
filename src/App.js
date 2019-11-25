@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Wrapper from '../src/container/Wrapper';
-import './App.css';
+import { App_div } from './styled';
 
 function App() {
   return (
-    <div className="App">
+    <App_div>
       <Wrapper />
-    </div>
+    </App_div>
   );
 }
 
