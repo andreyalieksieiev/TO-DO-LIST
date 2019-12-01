@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Item_li = styled.li`
+export const Item_li = styled.div`
   border: 1px solid rgb(100, 99, 100);
   list-style: none;
   padding-top: 15px;  

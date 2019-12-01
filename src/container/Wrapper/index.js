@@ -2,49 +2,49 @@ import React from 'react';
 
 import Header from '../Header';
 import Body from '../Body';
+import { connect } from 'react-redux';
+import { changeText, addItem, deleteItem } from '../../store/actions';
 
 class Wrapper extends React.Component {
-  state = {
-    messages: [],
-    post: {
-      text: '',
-      id: ''
-    }
-  }
 
   inputChange = e => {   
     const itemText = e.target.value;
     const currentItem = {text: itemText, id: Date.now()};
-    this.setState({ post: currentItem })
+    this.props.changeText(currentItem)
   } 
 
   addPost = () => { 
-    const newItem = this.state.post;
+    const newItem = this.props.post;
     if (newItem.text !== '') {
-      const New = [...this.state.messages, newItem];
-      this.setState({
-        messages: New,
-        post: {text: '', id: ''}
-      })
+      const New = [...this.props.messages, newItem];
+      this.props.addItem(New);
     }
   }
 
    deleteMessage = id => {
-    const filteredItem = this.state.messages.filter(p => {
+    const filteredItem = this.props.messages.filter(p => {
       return p.id !== id
     })
-    this.setState({ messages: filteredItem })
+    this.props.deleteItem(filteredItem)
   }
 
   render () {
-    const {messages, post } = this.state;   
+    const { post } = this.props; 
+  
     return (
       <div>
-        <Header inputChange={this.inputChange} addPost={this.addPost} value={post.text} />
-        <Body messages={messages} deleteMessage={this.deleteMessage} />
+        <Header inputChange={this.inputChange} addPost={this.addPost} value={post.text}/>
+        <Body messages={this.props.messages} deleteMessage={this.deleteMessage} />
       </div>
     )
   }
 } 
 
-export default Wrapper;
+const mapStateToProps = (state) => {
+  return {
+    post: state.post,
+    messages: state.messages
+  }
+}
+
+export default connect( mapStateToProps, { changeText, addItem, deleteItem } )(Wrapper);

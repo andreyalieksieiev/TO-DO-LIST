@@ -7,7 +7,7 @@ const Header = ({ inputChange, addPost, value }) => {
   return(
     <div>
       <Input changed={inputChange} value={value} />
-      <Button clicked={addPost} />
+      <Button clicked={addPost} name="Add" />
     </div>
   )
 }

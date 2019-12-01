@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Button = ({ clicked }) => (
-  <button onClick={clicked} >Add</button>
-)
+const Button = ({ clicked, name }) => <button onClick={clicked}>{name}</button>
 
 export default Button;
